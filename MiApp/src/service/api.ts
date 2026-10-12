@@ -33,7 +33,7 @@ export async function request<T>(path: string, { method = "GET", body, auth = fa
     const data = await res.json().catch(() => null)
 
     if (!res.ok) {
-        throw new Error(data?.error() ?? `Error ${res.status}`);
+        throw new Error(data?.error ?? `Error ${res.status}`);
     }
     return data as T;
 }

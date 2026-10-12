@@ -1,6 +1,12 @@
 import { useFocusEffect, useRouter } from "expo-router";
 import { useCallback, useState } from "react";
-import { ActivityIndicator, FlatList, Pressable, RefreshControl, View } from "react-native";
+import {
+  ActivityIndicator,
+  FlatList,
+  Pressable,
+  RefreshControl,
+  View,
+} from "react-native";
 
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
@@ -39,7 +45,11 @@ export default function TareasScreen() {
     setRefreshing(false);
   }, [cargar]);
 
-  useFocusEffect(useCallback(() => { cargar(); }, [cargar]));
+  useFocusEffect(
+    useCallback(() => {
+      cargar();
+    }, [cargar]),
+  );
 
   const pendientes = tareas.filter((t) => !t.completada).length;
 
@@ -57,16 +67,32 @@ export default function TareasScreen() {
 
   if (loading) {
     return (
-      <ThemedView style={{ flex: 1, alignItems: "center", justifyContent: "center", gap: 12 }}>
+      <ThemedView
+        style={{
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 12,
+        }}
+      >
         <ActivityIndicator size="large" />
-        <ThemedText type="small" themeColor="textSecondary">Cargando tus tareas...</ThemedText>
+        <ThemedText type="small" themeColor="textSecondary">
+          Cargando tus tareas...
+        </ThemedText>
       </ThemedView>
     );
   }
 
   return (
     <ThemedView style={{ flex: 1 }}>
-      <View style={{ paddingHorizontal: 24, paddingTop: 50, paddingBottom: 12, gap: 14 }}>
+      <View
+        style={{
+          paddingHorizontal: 24,
+          paddingTop: 50,
+          paddingBottom: 12,
+          gap: 14,
+        }}
+      >
         <View style={{ gap: 2 }}>
           <ThemedText type="subtitle">Mis tareas</ThemedText>
           <ThemedText type="small" themeColor="textSecondary">
@@ -123,7 +149,10 @@ export default function TareasScreen() {
       </View>
 
       {error && (
-        <Pressable onPress={cargar} style={{ paddingHorizontal: 24, paddingBottom: 12 }}>
+        <Pressable
+          onPress={cargar}
+          style={{ paddingHorizontal: 24, paddingBottom: 12 }}
+        >
           <View
             style={{
               backgroundColor: "#fee2e2",
@@ -161,11 +190,22 @@ export default function TareasScreen() {
         }
         ListEmptyComponent={
           error ? null : (
-            <View style={{ flex: 1, alignItems: "center", justifyContent: "center", gap: 8 }}>
+            <View
+              style={{
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 8,
+              }}
+            >
               <ThemedText type="default" style={{ fontWeight: "700" }}>
                 Todavia no tienes tareas
               </ThemedText>
-              <ThemedText type="small" themeColor="textSecondary" style={{ textAlign: "center" }}>
+              <ThemedText
+                type="small"
+                themeColor="textSecondary"
+                style={{ textAlign: "center" }}
+              >
                 Cuando se te asignen tareas apareceran aqui.
               </ThemedText>
             </View>
@@ -203,7 +243,9 @@ export default function TareasScreen() {
                 borderRadius: 20,
                 paddingVertical: 4,
                 paddingHorizontal: 10,
-                backgroundColor: item.completada ? "rgba(47, 158, 68, 0.15)" : "rgba(245, 159, 0, 0.15)",
+                backgroundColor: item.completada
+                  ? "rgba(47, 158, 68, 0.15)"
+                  : "rgba(245, 159, 0, 0.15)",
               }}
             >
               <ThemedText
