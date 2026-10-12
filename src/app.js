@@ -8,7 +8,6 @@ import v1TareasRoutes from "./routes/v1/tareas.routes.js"
 import v2TareasRoutes from "./routes/v2/tareas.routes.js"
 
 const app = express()
-const PORT = process.env.PORT || 3000
 
 app.use(express.json())
 app.use(loggerMiddleware)
